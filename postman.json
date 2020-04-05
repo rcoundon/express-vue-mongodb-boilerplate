@@ -1,0 +1,85 @@
+{
+	"info": {
+		"_postman_id": "c8ddbe52-32fd-46be-beeb-a8e100306dd5",
+		"name": "PrintBay",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET /items",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/items",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /items",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "95d5cc06-00a6-4e26-a258-18d7bb526f08",
+						"exec": [
+							"var body = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"itemId\", body.item._id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"From Postman\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/items",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /items/:id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/items/{{itemId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"items",
+						"{{itemId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
